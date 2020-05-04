@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Developer!{% endblock %}
+
+{% block body %}
+<style>
+  .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+  .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">
+  <div class="example-wrapper">
+    Developer List
+    {% if developers %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Developer</th>
+          <th>Time</th>
+          <th>Level</th>
+          <th>Todo</th>
+          <th>Business</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%  for develop in developers %}
+        <tr>
+          <td>{{ develop.developer }}</td>
+          <td>{{ develop.time }}</td>
+          <td>{{ develop.hardDegree }}</td>
+          <td><a href="/todo/devs/{{ develop.id }}" class="btn btn-primary">Todo Show</a></td>
+          <td><a href="/business/devs/{{ develop.id }}" class="btn btn-dark">Business Show</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>Developer is'not</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

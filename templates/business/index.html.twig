@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Business!{% endblock %}
+
+{% block body %}
+<style>
+  .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+  .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+
+<div class="example-wrapper">
+  Business Work List-API2
+  {% if business %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Business</th>
+        <th>Time</th>
+        <th>Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%  for busines in business %}
+      <tr>
+        <td>{{ busines.task }}</td>
+        <td>{{ busines.timeHour }}</td>
+        <td>{{ busines.hardDegree }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>Todo_Plan is'not</p>
+  {% endif %}
+</div>
+{% endblock %}
+
+
