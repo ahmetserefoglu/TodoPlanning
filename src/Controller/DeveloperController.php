@@ -100,21 +100,21 @@ class DeveloperController extends AbstractController {
 			$sumTime += $value['timeHour'];
 
 			if ($sumTime <= $weekHour) {
-				array_push($value, $week . ".Hafta Planı");
+				array_push($value, $week . ".Week Plan");
 				array_push($weekPlan, $value);
 
 			} else {
 				$mod = fmod($sumTime, 45);
 				$value['timeHour'] = $value['timeHour'] - $mod;
 				if ($value['timeHour'] != 0) {
-					array_push($value, $week . ".Hafta Planı");
+					array_push($value, $week . ".Week Plan");
 					array_push($weekPlan, $value);
 				}
 
 				$week++;
 				$value['timeHour'] = $mod;
-				$value['0'] = $week . ".Hafta Planı";
-				array_push($value, $week . ".Hafta Planı");
+				$value['0'] = $week . ".Week Plan";
+				array_push($value, $week . ".Week Plan");
 				array_push($weekPlan, $value);
 				$sumTime = $mod;
 
