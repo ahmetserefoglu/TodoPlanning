@@ -28,5 +28,5 @@ php bin / console make: command ___name____
 Commad Created:
 php bin / console __commandname__
 
-Controller:
+Controller Created:
 php bin / console make: controller __name__
