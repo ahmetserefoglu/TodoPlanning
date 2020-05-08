@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Strategy\Context;
+use App\Strategy\TodoWorkCalculate;
 
 class DeveloperController extends AbstractController {
 	/**
@@ -48,8 +50,10 @@ class DeveloperController extends AbstractController {
 		$result = $query->getArrayResult();
 		$resultDev = $queryDev->getArrayResult();
 
-		$results = $this->weekshow($result);
-
+		//$results = $this->weekshow($result);
+		$context = new Context($result,"Todo");
+		$results = $context->weekPlan();
+		
 		//return $this->weekshow($result, $resultDev[0]["developer"]);
 		return $this->render('developer/show.html.twig', ['businessdev' => $results,
 			'developers' => $resultDev, 'dev' => $id]);
@@ -74,12 +78,16 @@ class DeveloperController extends AbstractController {
 			FROM App:Developer d'
 		);
 		$result = $query->getArrayResult();
-		$resultDev = $queryDev->getArrayResult();
+
+		$context = new Context($result);
+		$results = $context->weekPlan();
+
+		/*$resultDev = $queryDev->getArrayResult();
 
 		$results = $this->weekshow($result);
 
 		$response = new Response(json_encode($results));
-		$response->headers->set('Content-Type', 'application/json');
+		$response->headers->set('Content-Type', 'application/json');*/
 
 		//return $response;
 
